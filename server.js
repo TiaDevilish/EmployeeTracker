@@ -1,14 +1,18 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
+const util = require("util");
 
 var connection = mysql.createConnection({
-    host: "localhostschool",
-    port: 3306,
+    host: "localhost",
     user: "root",
-    password:"Netisedavam7$",
-    database:"employee_db"
+    port: 3306,
+    password: "Netisedavam7",
+    database: "employee_db"
 });
 
 connection.connect(function(err){
     if(err) throw(err);
+    console.log("hello");
 });
+
+// connection.query = util.promisify(connection.query);
