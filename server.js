@@ -12,7 +12,24 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err){
     if(err) throw(err);
-    console.log("hello");
+    startingFunction();
 });
 
 // connection.query = util.promisify(connection.query);
+
+function startingFunction(){
+    inquirer.prompt([
+        {
+            message:"What would you like to do?",
+            choices:["Add", "View", "Update", "Delete"],
+            type:"list",
+            name:"action"
+        },
+        {
+            messafe:"Select from the following options:",
+            choices:["Department", "Employee", "Roles"],
+            type:"list",
+            name:"options"
+        }
+    ])
+}
