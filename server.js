@@ -171,9 +171,20 @@ function createData(options){
                                 salary: res.salary,
                                 department_id: res.department
                             },
-                        )
+
+                            function(err, res){
+                                if(err) throw(err);
+                                console.log(res.affectedRows + "Role added!\n");
+                                continuePrompt();
+                            }
+                        );
                     }
+                }).catch(function(err){
+                    console.log(err);
                 })
-            })
+            });
+            break;
+        
+        case "Department":
     }
 }
