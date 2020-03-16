@@ -52,3 +52,31 @@ function startingFunction(){
         console.log(err);
     })
 }
+
+function createData(options){
+    switch(options){
+        case "Employee":
+            connection.query("SELECT * FROM roles", function(err, res){
+                if(err) throw(err);
+                const roles = res.map(object => {
+                    return {
+                        name: object.role_title,
+                        value: object.r_id
+                    }
+                });
+                roles.push("N/A")
+
+                connection.query("SELECT * FROM employee", function(err, res){
+                    if(err) throw(err);
+
+                    const employee = res.map(object => {
+                        return {
+                            name: `${object.first_name} ${object.last_name}`,
+                            value: object.e_id
+                        }
+                    });
+                    
+                })
+            })
+    }
+}
