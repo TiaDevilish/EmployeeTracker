@@ -1,33 +1,35 @@
-use employee_db;
+DROP DATABASE IF EXISTS employee_db;
 
-create table department(
-    d_id int auto_increment primary key,
-    departmentName varchar(30)
+CREATE DATABASE employee_db;
+
+USE employee_db;
+
+CREATE TABLE department(
+    d_id INT AUTO_INCREMENT PRIMARY KEY,
+    departmentName VARCHAR(30)
 );
 
 
-create table roles(
-    r_id int auto_increment primary key, 
-    role_title varchar(30) not null,
-    salary decimal (8,2) not null,
-    department_id int,
-    foreign key (department_id) references department(d_id)
+CREATE TABLE roles(
+    r_id INT AUTO_INCREMENT PRIMARY KEY, 
+    role_title VARCHAR(30) NOT NULL,
+    salary DECIMAL (8,2) NOT NULL,
+    department_id INT
 );
 
 
-create table employee(
-    e_id int auto_increment primary key, 
-    first_name varchar(30) not null,
-    last_name varchar(30) not null,
-    role_id int,
-    foreign key (role_id) references roles(r_id),
-    manager_id int,
-    foreign key (manager_id) references employee(e_id)
+CREATE TABLE employee(
+    e_id INT AUTO_INCREMENT PRIMARY KEY, 
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INT,
+    FOREIGN KEY (role_id) REFERENCES roles(r_id),
+    manager_id INT
 );
 
 
-select*from department;
+SELECT*FROM department;
 
-select*from roles;
+SELECT*FROM roles;
 
-select*from employee;
+SELECT*FROM employee;
