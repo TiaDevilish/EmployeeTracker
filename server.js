@@ -186,5 +186,52 @@ function createData(options){
             break;
         
         case "Department":
+            inquirer.prompt([
+                {
+                    name: "departmentname",
+                    type: "input",
+                    message: "What is the name of the new department?"
+                }
+            ]).then(function(res){
+                console.log("Adding a new department... \n");
+                connection.query(
+                    "INSERT INTO department SET ?", {
+                        departmentName: res.departmentname
+                    },
+
+                    function(err, res){
+                        if(err) throw(err);
+                        console.log(res.affectedRows + "Department added!\n");
+                        continuePrompt()
+                    }
+                );
+            }).catch(function(err){
+                console.log(err);
+            })
+            break;
+    }
+};
+
+function readData(res){
+    switch(res){
+        case "Employee":
+            console.log("Select all employees...\n");
+            connection.query("SELECT * FROM roles", function(err,res){
+                if(err)throw(err);
+                console.table(res);
+                continuePrompt()
+            });
+            break;
+        
+            case "Department":
+                console.log("Selecting all departments...\n");
+                connection.query("SELECT * FROM department", function(err,res){
+                    if(err) throw(err);
+                    console.table(res);
+                    continuePrompt()
+                });
+                break;
     }
 }
+
+
