@@ -1,12 +1,13 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 const util = require("util");
+require('dotenv').config();
 
 var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
     port: 3306,
-    password: "Netisedavam7",
+    password: process.env.DB_PASS,
     database: "employee_db"
 });
 
